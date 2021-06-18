@@ -15,6 +15,8 @@ kind: Pod
 metadata:
   name: $POD_NAME
   namespace: kube-system
+  labels:
+    pod-id: $POD_NAME
 spec:
   restartPolicy: Never
   terminationGracePeriodSeconds: 0
@@ -43,7 +45,7 @@ spec:
     kubernetes.io/hostname: $NODE_NAME
 EOF
 
-sleep 5
+kubectl -n kube-system wait -l pod-id=$POD_NAME --for=condition=ready pod --timeout=600s
 
 function cleanup {
     kubectl -n kube-system delete pod $POD_NAME
@@ -51,4 +53,4 @@ function cleanup {
 
 trap cleanup EXIT
 
-kubectl -n kube-system exec -it $POD_NAME /bin/bash
+kubectl -n kube-system exec -it $POD_NAME -- /bin/bash
