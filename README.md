@@ -5,3 +5,8 @@ USAGE:
 	chmod +x ./bashin.sh
 	./bashin.sh {NODE_NAME}
 ```
+
+TODO: 
+* Add ClusterRole and ClusterRoleBinding for RBAC-enabled setups
+* Add CRD/Operator
+* Add install script

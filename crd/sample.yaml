@@ -1,0 +1,6 @@
+apiVersion: root.shell/v1
+kind: RootShell
+metadata:
+  name: the-rootshell
+spec:
+  hostnode: aks-faster-11658718-vmss00000a
